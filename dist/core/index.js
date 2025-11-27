@@ -500,7 +500,7 @@ var consoleDebugAdvanced = function consoleDebugAdvanced() {
     });
   };
   window.consoleDebugMocked = true;
-  console.log('🐝 consoleDebugAdvanced APPLIED');
+  console.debug('🐝 consoleDebugAdvanced APPLIED');
 };
 
 /***/ })
@@ -568,7 +568,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/core/utils.ts");
 
-var VERSION = '2.15';
+var VERSION = '2.16';
 console.debug("\uD83D\uDC1D dyna-userscripts core (built) - loaded - v".concat(VERSION));
 (0,_utils__WEBPACK_IMPORTED_MODULE_0__.consoleDebugAdvanced)();
 /******/ 	return __webpack_exports__;

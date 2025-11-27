@@ -468,5 +468,5 @@ export const consoleDebugAdvanced = (): void => {
     });
   };
   (window as any).consoleDebugMocked = true;
-  console.log('🐝 consoleDebugAdvanced APPLIED');
+  console.debug('🐝 consoleDebugAdvanced APPLIED');
 };
