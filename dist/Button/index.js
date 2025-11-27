@@ -7,7 +7,7 @@
 		exports["dyna-userscripts"] = factory();
 	else
 		root["dyna-userscripts"] = factory();
-})(global, () => {
+})(self, () => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({

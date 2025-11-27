@@ -33,7 +33,7 @@ process.traceDeprecation = true;
 
 module.exports = {
   mode: "development",          // distribute it without minification
-  target: "node",               // Note: Not "web", to allow the components to be used from the server package!
+  target: "web",
   entry:
     isSingleModule
       ? (
