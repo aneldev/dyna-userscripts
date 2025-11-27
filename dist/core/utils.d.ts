@@ -45,4 +45,5 @@ export declare const isInIframe: boolean;
 export declare function guid(randomBlocks?: number): string;
 export declare function shortGuid(): string;
 export declare function getElementHash(container: Element, element: Element): string | null;
+export declare const consoleDebugAdvanced: () => void;
 //# sourceMappingURL=utils.d.ts.map

@@ -414,7 +414,7 @@ export function getElementHash(container: Element, element: Element): string | n
   return "h" + hash.toString(36);
 }
 
-const consoleDebugAdvanced = (): void => {
+export const consoleDebugAdvanced = (): void => {
   if ((window as any).consoleDebugMocked) return;
   (window as any).consoleDebugAll = [];
   let lastTime: number = Date.now();
@@ -470,5 +470,3 @@ const consoleDebugAdvanced = (): void => {
   (window as any).consoleDebugMocked = true;
   console.log('🐝 consoleDebugAdvanced APPLIED');
 };
-
-consoleDebugAdvanced();
