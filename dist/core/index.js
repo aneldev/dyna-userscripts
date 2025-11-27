@@ -568,7 +568,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/core/utils.ts");
 
-console.debug('dyna-userscripts core - loaded');
+console.debug('dyna-userscripts core - loaded - v2.12');
 (0,_utils__WEBPACK_IMPORTED_MODULE_0__.consoleDebugAdvanced)();
 /******/ 	return __webpack_exports__;
 /******/ })()
