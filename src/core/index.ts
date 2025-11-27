@@ -1,5 +1,6 @@
 import {consoleDebugAdvanced} from './utils';
 
-console.debug('dyna-userscripts core - loaded - v2.13');
+const VERSION = '2.15';
+console.debug(`🐝 dyna-userscripts core (built) - loaded - v${VERSION}`);
 
 consoleDebugAdvanced();
