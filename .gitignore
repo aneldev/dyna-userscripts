@@ -9,3 +9,4 @@ temp/
 npm-debug.log
 bash.exe.stackdump
 *storybook.log
+# Note: dist/ is intentionally not ignored so it can be committed on releases
