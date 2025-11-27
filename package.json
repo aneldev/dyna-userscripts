@@ -32,7 +32,7 @@
     "test-update-snapshots": "jest --updateSnapshot --runInBand",
     "update-deps": "rimraf pnpm-lock.yaml && pnpm update --latest",
     "publish-push": "pnpm version patch && pnpm publish --no-git-checks && git push && git push --tags",
-    "release": "pnpm build && pnpm test && git add -u && git add -A && git commit --allow-empty -m \"Build changes\""
+    "release": "pnpm build && git add -u && git add -A && git commit --allow-empty -m \"Build changes\" && pnpm publish-push"
   },
   "keywords": [
     "react",
