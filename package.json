@@ -133,6 +133,7 @@
   "packageManager": "pnpm@10.19.0",
   "dependencies": {
     "dyna-error": "^4.0.13",
+    "dyna-loops": "^1.7.3",
     "moment": "^2.30.1"
   }
 }

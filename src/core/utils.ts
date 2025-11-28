@@ -118,7 +118,8 @@ export function addElementCreationEventListenerBySelector(selector: string, cb: 
       for (const node of addedNodes) {
         if ('matches' in node && (node as Element).matches(selector)) {
           cb(node as Element);
-        } else {
+        }
+        else {
           const matchingDescendants: NodeListOf<Element> = (node as Element).querySelectorAll(selector);
           for (const descendant of matchingDescendants) {
             cb(descendant);
@@ -128,13 +129,17 @@ export function addElementCreationEventListenerBySelector(selector: string, cb: 
     }
   });
 
-  observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
 }
 
 export function addElementCreationEventListener(classNames: string, cb: (element: Element) => void): void {
   console.warn('addElementCreationEventListener is deprecated, use addElementCreationEventListenerBySelector instead!!!');
   onElementCreation((node: Node) => {
-    const classNameSelector: string = classNames.split(' ').map(s => '.' + s).join('');
+    const classNameSelector: string = classNames.split(' ').map(s => '.' + s)
+      .join('');
     const hasElements = node.parentElement?.querySelectorAll(classNameSelector) || [];
     Array.from(hasElements).forEach((element: Element) => cb(element));
   });
@@ -147,7 +152,10 @@ export function onElementCreation(cb: (node: Node) => void): void {
     });
   };
   const observer: MutationObserver = new MutationObserver(observerCallback);
-  observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
 }
 
 export function debugJsonStringify(obj: any, spacing: number = 0): string {
@@ -195,7 +203,9 @@ export function getShortGuid(): string {
   }
   const counter: number = (Number(localStorage.getItem('ultra-short-guid--counter') || 234)) + 1;
   localStorage.setItem('ultra-short-guid--counter', counter.toString());
-  const output: string = [prefix, Math.random().toString().slice(-1), counter, Math.random().toString().slice(-1)].join('');
+  const output: string = [prefix, Math.random().toString()
+    .slice(-1), counter, Math.random().toString()
+    .slice(-1)].join('');
   return output;
 }
 
@@ -215,13 +225,16 @@ export function injectToolbar(args: { title: string; buttons: Array<{ label: str
     backgroundColor: '#fff',
     borderRadius: '4px',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    zIndex: '9999'
+    zIndex: '9999',
   });
   toolbar.classList.add('toolbar');
 
   const title: HTMLHeadingElement = document.createElement('h3');
   title.textContent = args.title;
-  Object.assign(title.style, { color: 'gray', margin: '10px' });
+  Object.assign(title.style, {
+    color: 'gray',
+    margin: '10px',
+  });
   toolbar.appendChild(title);
 
   const buttonContainer: HTMLDivElement = document.createElement('div');
@@ -229,10 +242,12 @@ export function injectToolbar(args: { title: string; buttons: Array<{ label: str
     display: 'flex',
     flexDirection: 'column' as const,
     gap: '8px',
-    padding: '10px'
+    padding: '10px',
   });
 
-  args.buttons.forEach(({ label, color = 'purple', onClick }) => {
+  args.buttons.forEach(({
+    label, color = 'purple', onClick,
+  }) => {
     const button: HTMLButtonElement = document.createElement('button');
     button.textContent = label;
     Object.assign(button.style, {
@@ -241,7 +256,7 @@ export function injectToolbar(args: { title: string; buttons: Array<{ label: str
       border: 'none',
       borderRadius: '4px',
       padding: '8px 16px',
-      cursor: 'pointer'
+      cursor: 'pointer',
     });
     button.addEventListener('click', onClick);
     buttonContainer.appendChild(button);
@@ -258,7 +273,9 @@ export function injectButton(options: {
   color?: string;
   onClick: () => void;
 }): void {
-  const { label, height = 32, afterElement, color = "tomato", onClick } = options;
+  const {
+    label, height = 32, afterElement, color = "tomato", onClick,
+  } = options;
   const button: HTMLButtonElement = document.createElement('button');
   button.innerHTML = label;
   Object.assign(button.style, {
@@ -269,7 +286,7 @@ export function injectButton(options: {
     borderRadius: '4px',
     backgroundColor: color,
     color: 'white',
-    cursor: 'pointer'
+    cursor: 'pointer',
   });
   button.addEventListener('click', onClick);
   (window as any).testButton = button;
@@ -277,7 +294,9 @@ export function injectButton(options: {
 }
 
 export function clearApp(options: { cookies?: boolean; data?: boolean } = {}): void {
-  const { cookies = false, data = false } = options;
+  const {
+    cookies = false, data = false,
+  } = options;
 
   if (cookies) {
     const cookies: string[] = document.cookie.split(";");
@@ -330,7 +349,8 @@ export function random(from: number, to_: number = from): number {
 export function getStackStrace(): string[] {
   try {
     throw new Error();
-  } catch (e: any) {
+  }
+  catch (e: any) {
     return e.stack!.split('\n').slice(2);
   }
 }
@@ -362,7 +382,9 @@ export function get10TipsFromArticle(): void {
 export const isTop: boolean = window.self === window.top;
 export const isInIframe: boolean = !isTop;
 
-const randomBlock = (): string => Number(Math.random().toString().substring(2)).toString(16).substring(0, 8);
+const randomBlock = (): string => Number(Math.random().toString()
+  .substring(2)).toString(16)
+  .substring(0, 8);
 
 export function guid(randomBlocks: number = 2): string {
   const datePart: string = (Date.now() * 3).toString(16);
@@ -456,8 +478,8 @@ export const consoleDebugAdvanced = (): void => {
         "# Console Debug Advanced Config",
         "Configure by passing {consoleDebugAdvancedConfig: true} as last arg to console.debug",
         "Access all logs: window.consoleDebugAll",
-        "Hard copy: {consoleDebugAdvancedConfig: true, hardCopy: true}"
-      ]
+        "Hard copy: {consoleDebugAdvancedConfig: true, hardCopy: true}",
+      ],
     });
 
     (window as any).consoleDebugAll!.push({

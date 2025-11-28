@@ -114,9 +114,9 @@ var getRuntimeStack = function getRuntimeStack() {
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ESeverity: () => (/* binding */ ESeverity),
 /* harmony export */   startConsoleLogger: () => (/* binding */ startConsoleLogger)
 /* harmony export */ });
-/* unused harmony export ESeverity */
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "moment");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./src/utils/index.ts");
@@ -281,22 +281,6 @@ var startConsoleLogger = function startConsoleLogger() {
 
 /***/ }),
 
-/***/ "./src/web/index.ts":
-/*!**************************!*\
-  !*** ./src/web/index.ts ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   startConsoleLogger: () => (/* reexport safe */ _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)
-/* harmony export */ });
-/* harmony import */ var _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConsoleLogger */ "./src/web/ConsoleLogger.ts");
-/* harmony import */ var _isLocalhost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isLocalhost */ "./src/web/isLocalhost.ts");
-
-
-
-/***/ }),
-
 /***/ "./src/web/isLocalhost.ts":
 /*!********************************!*\
   !*** ./src/web/isLocalhost.ts ***!
@@ -413,15 +397,19 @@ module.exports = require("moment");
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-/*!***************************!*\
-  !*** ./src/core/index.ts ***!
-  \***************************/
+/*!**************************!*\
+  !*** ./src/web/index.ts ***!
+  \**************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../web */ "./src/web/index.ts");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ESeverity: () => (/* reexport safe */ _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__.ESeverity),
+/* harmony export */   isLocalhost: () => (/* reexport safe */ _isLocalhost__WEBPACK_IMPORTED_MODULE_1__.isLocalhost),
+/* harmony export */   startConsoleLogger: () => (/* reexport safe */ _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)
+/* harmony export */ });
+/* harmony import */ var _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConsoleLogger */ "./src/web/ConsoleLogger.ts");
+/* harmony import */ var _isLocalhost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isLocalhost */ "./src/web/isLocalhost.ts");
 
-var VERSION = '2.17';
-(0,_web__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)();
-console.debug("\uD83D\uDC1D dyna-userscripts - loaded - v".concat(VERSION));
+
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;
