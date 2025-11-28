@@ -1,6 +1,7 @@
-import {consoleDebugAdvanced} from './utils';
+import {startConsoleLogger} from '../web';
 
-const VERSION = '2.16';
-console.debug(`🐝 dyna-userscripts core (built) - loaded - v${VERSION}`);
+const VERSION = '2.17';
 
-consoleDebugAdvanced();
+startConsoleLogger();
+
+console.debug(`🐝 dyna-userscripts - loaded - v${VERSION}`);

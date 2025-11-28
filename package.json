@@ -130,5 +130,9 @@
     "npm": ">=10.0.0 <11.0.0",
     "node": ">=20.0.0 <21.0.0"
   },
-  "packageManager": "pnpm@10.19.0"
+  "packageManager": "pnpm@10.19.0",
+  "dependencies": {
+    "dyna-error": "^4.0.13",
+    "moment": "^2.30.1"
+  }
 }
