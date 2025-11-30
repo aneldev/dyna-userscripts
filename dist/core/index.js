@@ -22773,7 +22773,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../web */ "./src/web/index.ts");
 
-var VERSION = '2.22';
+var VERSION = '2.23';
 (0,_web__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)();
 console.debug("\uD83D\uDC1D dyna-userscripts - loaded - v".concat(VERSION));
 })();
