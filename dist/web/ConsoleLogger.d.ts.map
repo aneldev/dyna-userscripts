@@ -1,1 +1,1 @@
-{"version":3,"file":"ConsoleLogger.d.ts","sourceRoot":"","sources":["../../src/web/ConsoleLogger.ts"],"names":[],"mappings":"AAsBA,oBAAY,SAAS;IACnB,GAAG,QAAQ;IACX,IAAI,SAAS;IACb,KAAK,UAAU;IACf,KAAK,UAAU;IACf,YAAY,iBAAiB;IAC7B,IAAI,SAAS;CACd;AA+HD,eAAO,MAAM,kBAAkB,QAAO,IAKrC,CAAC"}
+{"version":3,"file":"ConsoleLogger.d.ts","sourceRoot":"","sources":["../../src/web/ConsoleLogger.ts"],"names":[],"mappings":"AAsBA,oBAAY,SAAS;IACnB,GAAG,QAAQ;IACX,IAAI,SAAS;IACb,KAAK,UAAU;IACf,KAAK,UAAU;IACf,YAAY,iBAAiB;IAC7B,IAAI,SAAS;CACd;AAgID,eAAO,MAAM,kBAAkB,QAAO,IAIrC,CAAC"}
