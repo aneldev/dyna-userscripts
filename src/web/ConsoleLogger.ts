@@ -157,6 +157,7 @@ const regExpIsTempVariable = /^temp\d+$/;
 export const startConsoleLogger = (): void => {
   console.debug("STARTER", {
     "(window as any).__consoleLogger_started": (window as any).__consoleLogger_started,
+    window: window,
   });
   if ((window as any).__consoleLogger_started) return;
   (window as any).__consoleLogger_started = true;

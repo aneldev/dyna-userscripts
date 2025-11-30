@@ -283,7 +283,8 @@ var regExpIsTempVariable = /^temp\d+$/;
 window.__consoleLogger_started = false;
 var startConsoleLogger = function startConsoleLogger() {
   console.debug("STARTER", {
-    "(window as any).__consoleLogger_started": window.__consoleLogger_started
+    "(window as any).__consoleLogger_started": window.__consoleLogger_started,
+    window: window
   });
   if (window.__consoleLogger_started) return;
   window.__consoleLogger_started = true;
