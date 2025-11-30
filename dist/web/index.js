@@ -186,7 +186,12 @@ var ConsoleLogger = /*#__PURE__*/function () {
           elapsed: elapsed,
           severity: severity,
           args: args,
-          message: typeof args[0] === "string" ? args[0] : "---no text console---",
+          message: function () {
+            var messageArray = [];
+            var argParts = args.concat();
+            while (typeof argParts[0] === 'string' && !!argParts[0] || typeof argParts[0] === 'number') messageArray.push(argParts.shift());
+            return messageArray.filter(Boolean).join(' ');
+          }(),
           date: date,
           elapsedMs: date.valueOf() - _this._lastConsole,
           stack: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getRuntimeStack)(),

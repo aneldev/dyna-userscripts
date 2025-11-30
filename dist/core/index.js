@@ -186,7 +186,12 @@ var ConsoleLogger = /*#__PURE__*/function () {
           elapsed: elapsed,
           severity: severity,
           args: args,
-          message: typeof args[0] === "string" ? args[0] : "---no text console---",
+          message: function () {
+            var messageArray = [];
+            var argParts = args.concat();
+            while (typeof argParts[0] === 'string' && !!argParts[0] || typeof argParts[0] === 'number') messageArray.push(argParts.shift());
+            return messageArray.filter(Boolean).join(' ');
+          }(),
           date: date,
           elapsedMs: date.valueOf() - _this._lastConsole,
           stack: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getRuntimeStack)(),
@@ -22768,7 +22773,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../web */ "./src/web/index.ts");
 
-var VERSION = '2.19';
+var VERSION = '2.20';
 (0,_web__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)();
 console.debug("\uD83D\uDC1D dyna-userscripts - loaded - v".concat(VERSION));
 })();

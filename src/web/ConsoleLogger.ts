@@ -100,10 +100,15 @@ class ConsoleLogger {
         elapsed,
         severity,
         args,
-        message:
-          typeof args[0] === "string"
-            ? args[0]
-            : "---no text console---",
+        message: ((): string => {
+          const messageArray: string[] = [];
+          const argParts = args.concat();
+          while (
+            (typeof argParts[0] === 'string' && !!argParts[0]) ||
+            (typeof argParts[0] === 'number')
+            ) messageArray.push(argParts.shift());
+          return messageArray.filter(Boolean).join(' ');
+        })(),
         date,
         elapsedMs: date.valueOf() - this._lastConsole,
         stack: getRuntimeStack(),
