@@ -282,14 +282,14 @@ var ConsoleLogger = /*#__PURE__*/function () {
 var regExpIsTempVariable = /^temp\d+$/;
 window.__consoleLogger_started = false;
 var startConsoleLogger = function startConsoleLogger() {
-  console.debug("STARTER", {
-    LIB: true,
-    "(window as any).__consoleLogger_started": window.__consoleLogger_started,
-    window: window
-  });
   if (window.__consoleLogger_started) return;
+  console.debug("STARTER", {
+    LOCALE: true,
+    "(window as any).__consoleLogger_started": window.__consoleLogger_started,
+    window: window,
+    logger: new ConsoleLogger()
+  });
   window.__consoleLogger_started = true;
-  new ConsoleLogger();
 };
 
 /***/ }),
