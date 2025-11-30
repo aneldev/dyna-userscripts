@@ -1,6 +1,6 @@
 import {startConsoleLogger} from '../web';
 
-const VERSION = '2.21';
+const VERSION = '2.22';
 
 startConsoleLogger();
 

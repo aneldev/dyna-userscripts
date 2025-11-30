@@ -206,7 +206,6 @@ var ConsoleLogger = /*#__PURE__*/function () {
       _this._lastConsole = date.valueOf();
       (_this$_originalConsol2 = _this._originalConsole)[severity].apply(_this$_originalConsol2, [prefix].concat(_toConsumableArray(args)));
     };
-    console.trace("ConsoleLogger CREATED");
     window.console.log = function () {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -281,10 +280,10 @@ var ConsoleLogger = /*#__PURE__*/function () {
   }]);
 }();
 var regExpIsTempVariable = /^temp\d+$/;
-var applied = false;
+window.__consoleLogger_started = false;
 var startConsoleLogger = function startConsoleLogger() {
-  if (applied) return;
-  applied = true;
+  if (window.__consoleLogger_started) return;
+  window.__consoleLogger_started = true;
   new ConsoleLogger();
 };
 

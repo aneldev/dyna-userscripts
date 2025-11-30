@@ -52,7 +52,6 @@ class ConsoleLogger {
   };
 
   constructor() {
-    console.trace("ConsoleLogger CREATED")
     window.console.log = (...args: any[]) => this._perform(ESeverity.LOG, args);
     window.console.info = (...args: any[]) => this._perform(ESeverity.INFO, args);
     window.console.debug = (...args: any[]) => this._perform(ESeverity.DEBUG, args);
@@ -153,10 +152,10 @@ class ConsoleLogger {
 
 const regExpIsTempVariable = /^temp\d+$/;
 
-let applied = false;
+(window as any).__consoleLogger_started = false;
 
 export const startConsoleLogger = (): void => {
-  if (applied) return;
-  applied = true;
+  if ((window as any).__consoleLogger_started) return;
+  (window as any).__consoleLogger_started = true;
   new ConsoleLogger();
 };
