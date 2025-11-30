@@ -124,6 +124,7 @@ var getRuntimeStack = function getRuntimeStack() {
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./src/utils/index.ts");
 /* harmony import */ var _isLocalhost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./isLocalhost */ "./src/web/isLocalhost.ts");
+/* harmony import */ var _getActualWindowFromAnyContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getActualWindowFromAnyContext */ "./src/web/getActualWindowFromAnyContext.ts");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -137,6 +138,7 @@ function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = 
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
 
 
 
@@ -280,25 +282,30 @@ var ConsoleLogger = /*#__PURE__*/function () {
   }]);
 }();
 var regExpIsTempVariable = /^temp\d+$/;
-var getSharedWindow = function getSharedWindow() {
-  // Userscript context - unsafeWindow exists
-  if (typeof window.unsafeWindow !== 'undefined') {
-    return window.unsafeWindow;
-  }
-  // CRA/page context
-  return window;
-};
 var startConsoleLogger = function startConsoleLogger() {
-  var sharedWindow = getSharedWindow();
-  if (sharedWindow.__consoleLogger_started) return;
-  console.debug("STARTER", {
-    LOCALE: true,
-    "__consoleLogger_started": sharedWindow.__consoleLogger_started,
-    context: typeof window.unsafeWindow !== 'undefined' ? 'USERSCRIPT' : 'PAGE',
-    window: sharedWindow,
-    logger: new ConsoleLogger()
+  var window = (0,_getActualWindowFromAnyContext__WEBPACK_IMPORTED_MODULE_3__.getActualWindowFromAnyContext)();
+  console.debug("startConsoleLogger_v23", {
+    "window.__consoleLogger_started": window.__consoleLogger_started
   });
-  sharedWindow.__consoleLogger_started = true;
+  if (window.__consoleLogger_started) return;
+  new ConsoleLogger();
+  window.__consoleLogger_started = true;
+};
+
+/***/ }),
+
+/***/ "./src/web/getActualWindowFromAnyContext.ts":
+/*!**************************************************!*\
+  !*** ./src/web/getActualWindowFromAnyContext.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getActualWindowFromAnyContext: () => (/* binding */ getActualWindowFromAnyContext)
+/* harmony export */ });
+var getActualWindowFromAnyContext = function getActualWindowFromAnyContext() {
+  return typeof window.unsafeWindow !== 'undefined' ? window.unsafeWindow : window;
 };
 
 /***/ }),
