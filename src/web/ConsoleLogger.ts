@@ -114,7 +114,7 @@ class ConsoleLogger {
       };
       this.logs.push(logItem);
     }
-    const prefix = `${elapsed.padStart(6, ' ')}`;
+    const prefix = `${elapsed.padStart(12, ' ')}`;
     this._lastConsole = date.valueOf();
     this._originalConsole[severity](prefix, ...args);
   };

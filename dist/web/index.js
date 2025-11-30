@@ -197,7 +197,7 @@ var ConsoleLogger = /*#__PURE__*/function () {
         };
         _this.logs.push(logItem);
       }
-      var prefix = "".concat(elapsed.padStart(6, ' '));
+      var prefix = "".concat(elapsed.padStart(12, ' '));
       _this._lastConsole = date.valueOf();
       (_this$_originalConsol2 = _this._originalConsole)[severity].apply(_this$_originalConsol2, [prefix].concat(_toConsumableArray(args)));
     };
