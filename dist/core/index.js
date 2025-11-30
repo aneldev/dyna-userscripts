@@ -283,6 +283,7 @@ var regExpIsTempVariable = /^temp\d+$/;
 window.__consoleLogger_started = false;
 var startConsoleLogger = function startConsoleLogger() {
   console.debug("STARTER", {
+    LIB: true,
     "(window as any).__consoleLogger_started": window.__consoleLogger_started,
     window: window
   });
@@ -22777,7 +22778,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../web */ "./src/web/index.ts");
 
-var VERSION = '2.25';
+var VERSION = '2.26';
 (0,_web__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)();
 console.debug("\uD83D\uDC1D dyna-userscripts - loaded - v".concat(VERSION));
 })();
