@@ -280,16 +280,25 @@ var ConsoleLogger = /*#__PURE__*/function () {
   }]);
 }();
 var regExpIsTempVariable = /^temp\d+$/;
-window.__consoleLogger_started = false;
+var getSharedWindow = function getSharedWindow() {
+  // Userscript context - unsafeWindow exists
+  if (typeof window.unsafeWindow !== 'undefined') {
+    return window.unsafeWindow;
+  }
+  // CRA/page context
+  return window;
+};
 var startConsoleLogger = function startConsoleLogger() {
-  if (window.__consoleLogger_started) return;
+  var sharedWindow = getSharedWindow();
+  if (sharedWindow.__consoleLogger_started) return;
   console.debug("STARTER", {
     LOCALE: true,
-    "(window as any).__consoleLogger_started": window.__consoleLogger_started,
-    window: window,
+    "__consoleLogger_started": sharedWindow.__consoleLogger_started,
+    context: typeof window.unsafeWindow !== 'undefined' ? 'USERSCRIPT' : 'PAGE',
+    window: sharedWindow,
     logger: new ConsoleLogger()
   });
-  window.__consoleLogger_started = true;
+  sharedWindow.__consoleLogger_started = true;
 };
 
 /***/ }),
@@ -22778,7 +22787,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../web */ "./src/web/index.ts");
 
-var VERSION = '2.27';
+var VERSION = '2.28';
 (0,_web__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)();
 console.debug("\uD83D\uDC1D dyna-userscripts - loaded - v".concat(VERSION));
 })();

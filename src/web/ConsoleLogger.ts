@@ -152,15 +152,35 @@ class ConsoleLogger {
 
 const regExpIsTempVariable = /^temp\d+$/;
 
-(window as any).__consoleLogger_started = false;
+// Shared utility code - TypeScript-safe unsafeWindow handling
+declare global {
+  interface Window {
+    __consoleLogger_started: boolean;
+    unsafeWindow?: Window;  // Optional for CRA context
+  }
+}
+
+const getSharedWindow = (): Window => {
+  // Userscript context - unsafeWindow exists
+  if (typeof (window as any).unsafeWindow !== 'undefined') {
+    return (window as any).unsafeWindow as Window;
+  }
+  // CRA/page context
+  return window;
+};
 
 export const startConsoleLogger = (): void => {
-  if ((window as any).__consoleLogger_started) return;
+  const sharedWindow = getSharedWindow();
+
+  if (sharedWindow.__consoleLogger_started) return;
+
   console.debug("STARTER", {
     LOCALE: true,
-    "(window as any).__consoleLogger_started": (window as any).__consoleLogger_started,
-    window: window,
+    "__consoleLogger_started": sharedWindow.__consoleLogger_started,
+    context: typeof (window as any).unsafeWindow !== 'undefined' ? 'USERSCRIPT' : 'PAGE',
+    window: sharedWindow,
     logger: new ConsoleLogger(),
   });
-  (window as any).__consoleLogger_started = true;
+
+  sharedWindow.__consoleLogger_started = true;
 };
