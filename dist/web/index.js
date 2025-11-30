@@ -282,6 +282,7 @@ var ConsoleLogger = /*#__PURE__*/function () {
 var regExpIsTempVariable = /^temp\d+$/;
 var applied = false;
 var startConsoleLogger = function startConsoleLogger() {
+  console.trace("startConsoleLogger CALLED");
   if (applied) return;
   applied = true;
   new ConsoleLogger();

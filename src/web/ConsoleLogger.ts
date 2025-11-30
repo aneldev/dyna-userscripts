@@ -155,6 +155,7 @@ const regExpIsTempVariable = /^temp\d+$/;
 let applied = false;
 
 export const startConsoleLogger = (): void => {
+  console.trace("startConsoleLogger CALLED")
   if (applied) return;
   applied = true;
   new ConsoleLogger();

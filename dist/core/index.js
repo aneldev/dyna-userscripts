@@ -282,6 +282,7 @@ var ConsoleLogger = /*#__PURE__*/function () {
 var regExpIsTempVariable = /^temp\d+$/;
 var applied = false;
 var startConsoleLogger = function startConsoleLogger() {
+  console.trace("startConsoleLogger CALLED");
   if (applied) return;
   applied = true;
   new ConsoleLogger();
@@ -22773,7 +22774,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../web */ "./src/web/index.ts");
 
-var VERSION = '2.20';
+var VERSION = '2.21';
 (0,_web__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)();
 console.debug("\uD83D\uDC1D dyna-userscripts - loaded - v".concat(VERSION));
 })();
