@@ -460,12 +460,16 @@ export const consoleDebugAdvanced = (): void => {
       ]
     });
 
-    (window as any).consoleDebugAll!.push({
-      ellapsed: prefix,
+    const output: any = {
+      elapsed: prefix,
       label: args[0],
-      args,
       date: new Date(),
-    });
+    };
+    let index = 0;
+    for (const arg of args) output[`arg${index++}`] = arg;
+
+
+    (window as any).consoleDebugAll!.push(output);
   };
   (window as any).consoleDebugMocked = true;
   console.log('🐝 consoleDebugAdvanced APPLIED');
