@@ -492,12 +492,25 @@ var consoleDebugAdvanced = function consoleDebugAdvanced() {
       },
       "03 help": ["# Console Debug Advanced Config", "Configure by passing {consoleDebugAdvancedConfig: true} as last arg to console.debug", "Access all logs: window.consoleDebugAll", "Hard copy: {consoleDebugAdvancedConfig: true, hardCopy: true}"]
     }]));
-    window.consoleDebugAll.push({
-      ellapsed: prefix,
+    var output = {
+      elapsed: prefix,
       label: args[0],
-      args: args,
       date: new Date()
-    });
+    };
+    var index = 0;
+    var _iterator5 = _createForOfIteratorHelper(args),
+      _step5;
+    try {
+      for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+        var arg = _step5.value;
+        output["arg".concat(index++)] = arg;
+      }
+    } catch (err) {
+      _iterator5.e(err);
+    } finally {
+      _iterator5.f();
+    }
+    window.consoleDebugAll.push(output);
   };
   window.consoleDebugMocked = true;
   console.log('🐝 consoleDebugAdvanced APPLIED');
