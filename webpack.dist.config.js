@@ -1,6 +1,7 @@
 ﻿const fs = require("fs");
 const path = require("path");
-const nodeExternals = require("webpack-node-externals");
+// Remove nodeExternals - causes require() in browser bundles
+// const nodeExternals = require("webpack-node-externals");
 const buffer = require.resolve("buffer");
 
 const isSingleModule =
@@ -32,58 +33,59 @@ const moduleNames = getModuleNames('./src');
 process.traceDeprecation = true;
 
 module.exports = {
-  mode: "development",          // distribute it without minification
+  mode: "development",
   target: "web",
   entry:
     isSingleModule
-      ? (
-        // Classic export of the /src/index.ts
-        [
-          path.resolve(__dirname, 'src/index.tsx')
-        ]
-      )
-      : (
-        // Multiple module exports of the /src/<Module name>/index.ts
-        moduleNames
-          .reduce((acc, entry) => {
-            acc[entry] = `./src/${entry}`;
-            return acc;
-          }, {})
-      ),
-  externals: nodeExternals(),
+      ? [path.resolve(__dirname, 'src/index.tsx')]
+      : moduleNames.reduce((acc, entry) => {
+        acc[entry] = `./src/${entry}`;
+        return acc;
+      }, {}),
+  // Remove externals: nodeExternals() - THIS CAUSES require() IN BROWSER
+  // Replace with web-safe externals or empty object
+  externals: {},
   optimization: {
-    // help: https://webpack.js.org/guides/tree-shaking/
-    usedExports: true,  // true to remove the dead code,
+    usedExports: true,
   },
-  devtool: "source-map",        // help: https://webpack.js.org/configuration/devtool/
-  // Every folder of ./src is a standalone exported module
+  devtool: "source-map",
   output:
     isSingleModule
       ? {
-        // Classic export of the /src/index.ts
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist/',
         filename: 'index.js',
-        library: package_.name,
-        libraryTarget: 'umd',
-        umdNamedDefine: true,
+          // FIXED: Use simple string + legacy UMD format
+          library: package_.name,
+          libraryTarget: 'umd',
+          umdNamedDefine: true,
+          globalObject: 'window',
         clean: true,
       }
       : {
-        // Multiple module exports of the /src/<Module name>/index.ts
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist/',
         filename: '[name]/index.js',
-        library: package_.name,
-        libraryTarget: 'umd',
-        umdNamedDefine: true,
+          // FIXED: Use simple string + legacy UMD format
+          library: package_.name,
+          libraryTarget: 'umd',
+          umdNamedDefine: true,
+          globalObject: 'window',
         clean: true,
       },
   resolve: {
     alias: {},
     extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".jsx"],
     fallback: {
-      stream: buffer,
+      // Remove Node.js modules, use browser alternatives or undefined
+      "fs": false,
+      "path": false,
+      "buffer": false,  // Remove - conflicts in browser
+      "stream": false,
+      "crypto": false,
+      "util": false,
+      // Add if needed:
+      // "buffer": require.resolve("buffer/"),
     }
   },
   module: {

@@ -117,9 +117,9 @@ var getRuntimeStack = function getRuntimeStack() {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ESeverity: () => (/* binding */ ESeverity),
 /* harmony export */   startConsoleLogger: () => (/* binding */ startConsoleLogger)
 /* harmony export */ });
-/* unused harmony export ESeverity */
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./src/utils/index.ts");
@@ -310,23 +310,6 @@ var getActualWindowFromAnyContext = function getActualWindowFromAnyContext() {
 
 /***/ }),
 
-/***/ "./src/web/index.ts":
-/*!**************************!*\
-  !*** ./src/web/index.ts ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   startConsoleLogger: () => (/* reexport safe */ _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)
-/* harmony export */ });
-/* harmony import */ var _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConsoleLogger */ "./src/web/ConsoleLogger.ts");
-/* harmony import */ var _isLocalhost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isLocalhost */ "./src/web/isLocalhost.ts");
-
-
-
-/***/ }),
-
 /***/ "./src/web/isLocalhost.ts":
 /*!********************************!*\
   !*** ./src/web/isLocalhost.ts ***!
@@ -438,7 +421,7 @@ var removeUndefined = function removeUndefined(data) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __nested_webpack_require_3028__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -452,14 +435,14 @@ var removeUndefined = function removeUndefined(data) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __nested_webpack_require_3028__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
@@ -472,12 +455,12 @@ var removeUndefined = function removeUndefined(data) {
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__nested_webpack_require_3028__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -488,7 +471,7 @@ var removeUndefined = function removeUndefined(data) {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
 var __nested_webpack_exports__ = {};
 /*!**********************!*\
@@ -22696,7 +22679,7 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -22710,17 +22693,17 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -22733,7 +22716,7 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -22745,7 +22728,7 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -22757,12 +22740,12 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -22773,7 +22756,7 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -22782,21 +22765,25 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!***************************!*\
-  !*** ./src/core/index.ts ***!
-  \***************************/
+/*!**************************!*\
+  !*** ./src/web/index.ts ***!
+  \**************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../web */ "./src/web/index.ts");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ESeverity: () => (/* reexport safe */ _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__.ESeverity),
+/* harmony export */   isLocalhost: () => (/* reexport safe */ _isLocalhost__WEBPACK_IMPORTED_MODULE_1__.isLocalhost),
+/* harmony export */   startConsoleLogger: () => (/* reexport safe */ _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)
+/* harmony export */ });
+/* harmony import */ var _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConsoleLogger */ "./src/web/ConsoleLogger.ts");
+/* harmony import */ var _isLocalhost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isLocalhost */ "./src/web/isLocalhost.ts");
 
-var VERSION = '2.30';
-(0,_web__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)();
-console.debug("\uD83D\uDC1D dyna-userscripts - loaded - v".concat(VERSION));
+
 })();
 
 /******/ 	return __webpack_exports__;

@@ -91,260 +91,6 @@ var getRuntimeStack = function getRuntimeStack() {
 
 /***/ }),
 
-/***/ "./src/utils/index.ts":
-/*!****************************!*\
-  !*** ./src/utils/index.ts ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getDurationString: () => (/* reexport safe */ _getDurationString__WEBPACK_IMPORTED_MODULE_1__.getDurationString),
-/* harmony export */   getRuntimeStack: () => (/* reexport safe */ _getRuntimeStack__WEBPACK_IMPORTED_MODULE_0__.getRuntimeStack)
-/* harmony export */ });
-/* harmony import */ var _getRuntimeStack__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getRuntimeStack */ "./src/utils/getRuntimeStack.ts");
-/* harmony import */ var _getDurationString__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getDurationString */ "./src/utils/getDurationString.ts");
-
-
-
-/***/ }),
-
-/***/ "./src/web/ConsoleLogger.ts":
-/*!**********************************!*\
-  !*** ./src/web/ConsoleLogger.ts ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   startConsoleLogger: () => (/* binding */ startConsoleLogger)
-/* harmony export */ });
-/* unused harmony export ESeverity */
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./src/utils/index.ts");
-/* harmony import */ var _isLocalhost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./isLocalhost */ "./src/web/isLocalhost.ts");
-/* harmony import */ var _getActualWindowFromAnyContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getActualWindowFromAnyContext */ "./src/web/getActualWindowFromAnyContext.ts");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
-function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-
-
-
-
-var ESeverity;
-(function (ESeverity) {
-  ESeverity["LOG"] = "log";
-  ESeverity["INFO"] = "info";
-  ESeverity["DEBUG"] = "debug";
-  ESeverity["ERROR"] = "error";
-  ESeverity["CAUGHT_ERROR"] = "caught-error";
-  ESeverity["WARN"] = "warn";
-})(ESeverity || (ESeverity = {}));
-/**
- * ConsoleLogger stores all the console logs in memory for later processing and easier access to the logged error objects or data.
- *
- * You can access the logs from the `consoleLogger.logs` array, which also includes other information like timestamps, elapsed time from the previous log, stack trace, etc.
- *
- * Tip: You can add `consoleLogger.logs` to your debugger's watcher for easy access.
- */
-var ConsoleLogger = /*#__PURE__*/function () {
-  function ConsoleLogger() {
-    var _this = this;
-    _classCallCheck(this, ConsoleLogger);
-    this.logs = [];
-    this._index = 0;
-    this._isEnabled = localStorage.getItem('ConsoleLogger-Enabled') === "true";
-    this._lastConsole = Date.now();
-    this._originalConsole = _defineProperty({
-      log: window.console.log,
-      info: window.console.info,
-      debug: window.console.debug,
-      error: window.console.error,
-      warn: window.console.warn
-    }, ESeverity.CAUGHT_ERROR, function () {
-      return undefined;
-    });
-    this._perform = function (severity, args) {
-      var _this$_originalConsol2;
-      // eslint-disable-next-line @typescript-eslint/no-this-alias
-      var self = _this;
-      var date = new Date();
-      var elapsed = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getDurationString)(_this._lastConsole, date);
-      if (_this.enabled) {
-        var logItem = {
-          index: _this._index++,
-          time: moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('HH:mm:ss.SSS'),
-          elapsed: elapsed,
-          severity: severity,
-          args: args,
-          message: function () {
-            var messageArray = [];
-            var argParts = args.concat();
-            while (typeof argParts[0] === 'string' && !!argParts[0] || typeof argParts[0] === 'number') messageArray.push(argParts.shift());
-            return messageArray.filter(Boolean).join(' ');
-          }(),
-          date: date,
-          elapsedMs: date.valueOf() - _this._lastConsole,
-          stack: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getRuntimeStack)(),
-          get copyToGlobal() {
-            self._copyToGlobal(logItem);
-            return "Copied to `window.temp`"; // Technically, assigned, not copied
-          }
-        };
-        _this.logs.push(logItem);
-      }
-      var prefix = "".concat(elapsed.padStart(12, ' '));
-      _this._lastConsole = date.valueOf();
-      (_this$_originalConsol2 = _this._originalConsole)[severity].apply(_this$_originalConsol2, [prefix].concat(_toConsumableArray(args)));
-    };
-    window.console.log = function () {
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      return _this._perform(ESeverity.LOG, args);
-    };
-    window.console.info = function () {
-      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        args[_key2] = arguments[_key2];
-      }
-      return _this._perform(ESeverity.INFO, args);
-    };
-    window.console.debug = function () {
-      for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-        args[_key3] = arguments[_key3];
-      }
-      return _this._perform(ESeverity.DEBUG, args);
-    };
-    window.console.error = function () {
-      for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-        args[_key4] = arguments[_key4];
-      }
-      return _this._perform(ESeverity.ERROR, args);
-    };
-    window.console.warn = function () {
-      for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-        args[_key5] = arguments[_key5];
-      }
-      return _this._perform(ESeverity.WARN, args);
-    };
-    window.consoleLogger = this;
-    window.addEventListener('error', function (error) {
-      _this._perform(ESeverity.CAUGHT_ERROR, ["consoleLogger: Uncaught error", error.message, error]);
-    });
-    window.addEventListener('unhandledrejection', function (event) {
-      _this._perform(ESeverity.CAUGHT_ERROR, ["consoleLogger: Uncaught promise rejection", event.reason, event]);
-    });
-    if (this.enabled) {
-      console.info(["consoleLogger: Is enabled and logging for this terminal.", "Run `consoleLogger.enabled=false` to turn it off."].join('\n'));
-    } else {
-      if (_isLocalhost__WEBPACK_IMPORTED_MODULE_2__.isLocalhost) {
-        console.info(["consoleLogger: Started but it is not enabled for this terminal.", "Run `consoleLogger.enabled=true` to start logging the consoles.", "This message is shown only in dev environment."].join('\n'));
-      }
-    }
-  }
-  return _createClass(ConsoleLogger, [{
-    key: "enabled",
-    get: function get() {
-      return this._isEnabled;
-    },
-    set: function set(enabled) {
-      this._isEnabled = enabled;
-      localStorage.setItem('ConsoleLogger-Enabled', enabled.toString());
-    }
-  }, {
-    key: "clear",
-    value: function clear() {
-      this.logs.length = 0;
-      console.info('ConsoleLogger: clear() called');
-    }
-  }, {
-    key: "_copyToGlobal",
-    value: function _copyToGlobal(logItem) {
-      var currentTempVariables = Object.keys(window).filter(function (key) {
-        return regExpIsTempVariable.test(key);
-      }).length;
-      for (var i = currentTempVariables; i > 0; i--) {
-        if (window["temp".concat(i)]) window["temp".concat(i + 1)] = window["temp".concat(i)];
-      }
-      window.temp1 = logItem;
-    }
-  }]);
-}();
-var regExpIsTempVariable = /^temp\d+$/;
-var startConsoleLogger = function startConsoleLogger() {
-  var window = (0,_getActualWindowFromAnyContext__WEBPACK_IMPORTED_MODULE_3__.getActualWindowFromAnyContext)();
-  console.debug("startConsoleLogger_v23", {
-    "window.__consoleLogger_started": window.__consoleLogger_started
-  });
-  if (window.__consoleLogger_started) return;
-  new ConsoleLogger();
-  window.__consoleLogger_started = true;
-};
-
-/***/ }),
-
-/***/ "./src/web/getActualWindowFromAnyContext.ts":
-/*!**************************************************!*\
-  !*** ./src/web/getActualWindowFromAnyContext.ts ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getActualWindowFromAnyContext: () => (/* binding */ getActualWindowFromAnyContext)
-/* harmony export */ });
-var getActualWindowFromAnyContext = function getActualWindowFromAnyContext() {
-  return typeof window.unsafeWindow !== 'undefined' ? window.unsafeWindow : window;
-};
-
-/***/ }),
-
-/***/ "./src/web/index.ts":
-/*!**************************!*\
-  !*** ./src/web/index.ts ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   startConsoleLogger: () => (/* reexport safe */ _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)
-/* harmony export */ });
-/* harmony import */ var _ConsoleLogger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConsoleLogger */ "./src/web/ConsoleLogger.ts");
-/* harmony import */ var _isLocalhost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isLocalhost */ "./src/web/isLocalhost.ts");
-
-
-
-/***/ }),
-
-/***/ "./src/web/isLocalhost.ts":
-/*!********************************!*\
-  !*** ./src/web/isLocalhost.ts ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   isLocalhost: () => (/* binding */ isLocalhost)
-/* harmony export */ });
-var isLocalhost = Boolean(window.location.hostname === 'localhost' ||
-// [::1] is the IPv6 localhost address.
-window.location.hostname === '[::1]' ||
-// 127.0.0.0/8 are considered localhost for IPv4.
-window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));
-
-/***/ }),
-
 /***/ "./node_modules/.pnpm/dyna-error@4.0.13/node_modules/dyna-error/dist/index.js":
 /*!************************************************************************************!*\
   !*** ./node_modules/.pnpm/dyna-error@4.0.13/node_modules/dyna-error/dist/index.js ***!
@@ -438,7 +184,7 @@ var removeUndefined = function removeUndefined(data) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __nested_webpack_require_3028__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -452,14 +198,14 @@ var removeUndefined = function removeUndefined(data) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __nested_webpack_require_3028__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
@@ -472,12 +218,12 @@ var removeUndefined = function removeUndefined(data) {
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__nested_webpack_require_3028__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -488,7 +234,7 @@ var removeUndefined = function removeUndefined(data) {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
 var __nested_webpack_exports__ = {};
 /*!**********************!*\
@@ -22696,7 +22442,7 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -22710,17 +22456,17 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -22733,7 +22479,7 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -22745,7 +22491,7 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -22757,12 +22503,12 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -22773,7 +22519,7 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -22782,21 +22528,24 @@ webpackContext.id = "./node_modules/.pnpm/moment@2.30.1/node_modules/moment/loca
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!***************************!*\
-  !*** ./src/core/index.ts ***!
-  \***************************/
+/*!****************************!*\
+  !*** ./src/utils/index.ts ***!
+  \****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../web */ "./src/web/index.ts");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getDurationString: () => (/* reexport safe */ _getDurationString__WEBPACK_IMPORTED_MODULE_1__.getDurationString),
+/* harmony export */   getRuntimeStack: () => (/* reexport safe */ _getRuntimeStack__WEBPACK_IMPORTED_MODULE_0__.getRuntimeStack)
+/* harmony export */ });
+/* harmony import */ var _getRuntimeStack__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getRuntimeStack */ "./src/utils/getRuntimeStack.ts");
+/* harmony import */ var _getDurationString__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getDurationString */ "./src/utils/getDurationString.ts");
 
-var VERSION = '2.30';
-(0,_web__WEBPACK_IMPORTED_MODULE_0__.startConsoleLogger)();
-console.debug("\uD83D\uDC1D dyna-userscripts - loaded - v".concat(VERSION));
+
 })();
 
 /******/ 	return __webpack_exports__;
